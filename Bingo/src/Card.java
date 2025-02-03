@@ -15,6 +15,11 @@ public Card() {
         }
     }
 }
+
+public Slot getSlot(int x, int y) {
+    return pos[x][y];
+}
+
 public void printCard(){
     System.out.println("Card:\n");
     for(int i = 0; i < 5; i++){

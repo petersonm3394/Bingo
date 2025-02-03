@@ -2,10 +2,17 @@ public class App {
     public static void main(String[] args) throws Exception {
 
 
-        Slot [][] s = new Slot[5][5];
-        
-        Card c = new Card(s);
-        c.printCard();
+        Slot[][] pos = new Slot[5][5];
+        for(int i = 0; i < 5; i++){
+            for(int j = 0; j < 5; j++){
+                pos[i][j] = new Slot(i, j, i+j);
+            }
+        }
+        Card card = new Card(pos);
+        card.printCard();
+        card.getSlot(3,2).mark();
+        card.getSlot(2,3).mark();
+        card.printCard();
 
         // int numCards = 0;
         // boolean cheats = false;
