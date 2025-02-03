@@ -4,10 +4,18 @@ public class Slot {
     private int value = -1;
     private boolean isMarked = false;
 
+    //constructor
     public Slot(int x, int y, int value) {
         this.x = x;
         this.y = y;
         this.value = value;
+        this.isMarked = false;
+    }
+    //default constructor
+    public Slot() {
+        this.x = -1;
+        this.y = -1;
+        this.value = -1;
         this.isMarked = false;
     }
     
