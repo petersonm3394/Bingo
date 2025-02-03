@@ -1,5 +1,11 @@
+
+import java.util.Scanner;
+
 public class App {
     public static void main(String[] args) throws Exception {
+
+        Scanner sc = new Scanner(System.in);
+        int x, y = 0;
 
 
         Slot[][] pos = new Slot[5][5];
@@ -10,8 +16,9 @@ public class App {
         }
         Card card = new Card(pos);
         card.printCard();
-        card.getSlot(3,2).mark();
-        card.getSlot(2,3).mark();
+        x = sc.nextInt();
+        y = sc.nextInt();
+        card.getSlot(x,y).mark();
         card.printCard();
 
         // int numCards = 0;
