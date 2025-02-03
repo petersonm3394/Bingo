@@ -1,8 +1,8 @@
 public class Slot {
-    private int x;
-    private int y;
-    private int value;
-    private boolean isMarked;
+    private int x = -1;
+    private int y = -1;
+    private int value = -1;
+    private boolean isMarked = false;
 
     public Slot(int x, int y, int value) {
         this.x = x;
