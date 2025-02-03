@@ -10,6 +10,7 @@ public class Slot {
         this.value = value;
         this.isMarked = false;
     }
+    
     // getters
     public int getX() {
         return x;
