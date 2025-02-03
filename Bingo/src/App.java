@@ -1,18 +1,12 @@
 public class App {
     public static void main(String[] args) throws Exception {
 
-        Slot[][] slots = new Slot[5][5];
-        for(int i = 0; i < 5; i++){
-            for(int j = 0; j < 5; j++){
-                slots[i][j] = new Slot(i, j, i*5 + j);
-            }
-        }
-        for(int i = 0; i < 5; i++){
-            for(int j = 0; j < 5; j++){
-                slots[i][j].printSlot();
-            }
-            System.out.println();
-        }
+
+        Slot [][] s = new Slot[5][5];
+        
+        Card c = new Card(s);
+        c.printCard();
+
         // int numCards = 0;
         // boolean cheats = false;
         // Scanner sc = new Scanner(System.in);
