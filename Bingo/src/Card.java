@@ -21,11 +21,12 @@ public Slot getSlot(int x, int y) {
 }
 
 public void printCard(){
-    System.out.println("Card:\n");
-    for(int i = 0; i < 5; i++){
-        for(int j = 0; j < 5; j++){
+    for (int i = 0; i < 5; i++){
+        System.out.print("| ");
+        for (int j = 0; j < 5; j++){
             pos[i][j].printSlot();
         }
+        System.out.println();
     }
 }
 

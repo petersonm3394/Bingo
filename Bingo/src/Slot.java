@@ -43,7 +43,7 @@ public class Slot {
         y = y_;
     }
     public void printSlot() {
-        System.out.print(x + "," + y + " " + value + " " + isMarked + " ");
+        System.out.print(value + " | ");
     }
 
 }
