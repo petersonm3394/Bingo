@@ -5,22 +5,16 @@ public class App {
     public static void main(String[] args) throws Exception {
 
         Scanner sc = new Scanner(System.in);
-        int x, y = 0;
+        
+        Slot[][] slots = new Slot[5][5];
 
 
-        Slot[][] pos = new Slot[5][5];
-        for(int i = 0; i < 5; i++){
-            for(int j = 0; j < 5; j++){
-                pos[i][j] = new Slot(i, j, i+j);
-            }
-        }
-        Card card = new Card(pos);
+        
+        
+        Card card = new Card(slots);
         card.printCard();
-        x = sc.nextInt();
-        y = sc.nextInt();
-        card.getSlot(x,y).mark();
-        card.printCard();
-
+        
+        
         // int numCards = 0;
         // boolean cheats = false;
         // Scanner sc = new Scanner(System.in);

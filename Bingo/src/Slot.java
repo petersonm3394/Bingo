@@ -1,6 +1,6 @@
 public class Slot {
-    private int x = '\0';
-    private int y = '\0';
+    private int x = 0;
+    private int y = 0;
     private int value = -1;
     private boolean isMarked = false;
 
@@ -13,8 +13,8 @@ public class Slot {
     }
     //default constructor
     public Slot() {
-        this.x = '\0';
-        this.y = '\0';
+        this.x = 0;
+        this.y = 0;
         this.value = -1;
         this.isMarked = false;
     }
