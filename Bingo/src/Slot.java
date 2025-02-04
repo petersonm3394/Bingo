@@ -29,6 +29,9 @@ public class Slot {
     public int getValue() {
         return value;
     }
+    public void setValue(int value_) {
+        value = value_;
+    }
     public boolean isMarked() {
         return isMarked;
     }

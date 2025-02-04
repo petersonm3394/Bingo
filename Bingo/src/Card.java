@@ -28,10 +28,14 @@ public class Card {
         }
         else {
             slots[x][y].mark();
+            slots[x][y].setValue(-1);
             return true;
         }
     }
     public int getSlotPos(int x, int y) {
+        if(x < 0 || x > 4 || y < 0 || y > 4) {
+            return -1;
+        }
         return slots[x][y].getValue();
     }
 
