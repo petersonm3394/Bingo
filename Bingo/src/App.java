@@ -28,7 +28,7 @@ public class App {
             System.out.println("An error occurred.");
             e.printStackTrace();
         }
-        return selection;
+        
     }
     public static void generateCards(int numCards) {
 
