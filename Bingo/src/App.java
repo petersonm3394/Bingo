@@ -3,12 +3,9 @@ import java.util.*;
 
 public class App {
     public static void main(String[] args) throws Exception {
-        Scanner sc = new Scanner(System.in);
-        System.out.println("How many cards would you like to generate 1-4?");
-        int numCards = sc.nextInt();
-        Card[] selection = readFile("BingoCards.txt");
+        readFile("Bingo/src/BingoCards.txt");
     }
-    public static Card[] readFile(String filename) throws Exception {
+    public static void readFile(String filename) throws Exception {
         File file = new File(filename);
             Scanner ft = new Scanner(file);
             Card[] selection = new Card[9];
