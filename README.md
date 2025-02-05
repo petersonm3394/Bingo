@@ -1,0 +1,1 @@
+This the first weekly check in for the bingo project. Got a good start but is fair from complete. The slot class is complete and the card class is partially complete. Started to read from the file but still need to store the card data in the card and slot class.
