@@ -1,11 +1,10 @@
-
 import java.io.*;
 import java.util.*;
 
 
 
 //testing commit to remote branch
-public class setup {
+public class Setup {
     //reads bingo cards from file
     public Card[] readFile(String filename) throws Exception {
         File file = new File(filename);
