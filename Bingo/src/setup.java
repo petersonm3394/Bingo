@@ -1,38 +1,45 @@
 import java.io.*;
 import java.util.*;
 
-
-
-//testing commit to remote branch
+/*
+ * 
+ * Setup Class
+ * The setup class is for the inital setup for BINGO.
+ * This includes reading from the BingoCards.txt file and assigning a user bingo cards.
+ * Also includes some helper function that help properly put data into a BINGO card
+ */
 public class Setup {
     //reads bingo cards from file
-    public Card[] readFile(String filename) throws Exception {
+    public ArrayList<Card> readFile(String filename) throws Exception {
         File file = new File(filename);
             Scanner ft = new Scanner(file);
-            Card[] selection = new Card[8];
+            //Assume there exists 8 cards in a file
+            //create card arraylist
+            ArrayList<Card> playerSelection = new ArrayList<Card>();
             int cardIndex = 0;
         try {
             
             while(ft.hasNextLine()) {
                 String dummy = ft.nextLine();
-                System.out.println(dummy);
+                //read 5 lines at a time for a single card data
                 String[] data = readCardData(ft);
                 dummy = ft.nextLine();
-                System.out.println();
+                //create an empty card to avoid null ptr errors
                 Slot[][] slots = createGrid(data);
-                selection[cardIndex] = new Card(slots);
+                //insert data into a card and store it in Card arraylist
+                playerSelection.add(new Card(slots));
                 cardIndex++;
                 
                 
 
             }
             ft.close();
-            
+            //displays an error if reading from file was unsucessful
         } catch (Exception e) {
             System.out.println("An error occurred.");
             e.printStackTrace();
         }
-        return selection;
+        return playerSelection;
         
     }
     //reads 5 lines to form a card
@@ -43,7 +50,6 @@ public class Setup {
             temp = ft.nextLine();
             temp = temp.replace(",", " ");
             data[i] = temp;
-            System.out.println(data[i]);
         }
         return data;
     }
@@ -63,8 +69,9 @@ public class Setup {
         
     }
     //picks random cards from selection of bingo cards
-    public Card[] pickCards(Card[] selection, int numCards) {
-        Card[] userCards = new Card[numCards];
+    public ArrayList<Card> pickCards(ArrayList<Card> playerSelection, int numCards) {
+        ArrayList<Card> userCards = new ArrayList<Card>(numCards);
+        //use a hashset to allow no duplicate cards
         HashSet<Integer> selectionIndex = new HashSet<Integer>();
         Random rand = new Random();
         while(selectionIndex.size() < numCards) {
@@ -75,7 +82,8 @@ public class Setup {
         System.out.println("Your cards are: "+ selectionIndex.toString());
         Iterator<Integer> it = selectionIndex.iterator();
         for (int i = 0; i < numCards; i++) {
-            userCards[i] = selection[it.next()];
+            userCards.add(playerSelection.get(it.next()));
+
         }
         return userCards;
     }
