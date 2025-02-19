@@ -2,4 +2,4 @@ This the first weekly check in for the bingo project. Got a good start but is fa
 
 This is the second weekly check in for the bingo project. Added a lot of functionality to bingo. Added a setup class to read card data from a file. Modified the card class to check for bingo in all directions. Added a player and caller class to the project. Player is just player actions being controlled by a menu in CLI. Caller contains automatic and manual bingo calling. Bingo is getting close but still need to add deletion of cards, better card format and checking called data vs marked on a card. 2/11/2025
 
-This is the third and last weekly check in for the bingo project. Finally completed the classes and combinated them to create BINGO. Added input validatation for each of the user input statements. Happy for how this protect turned out. Included necessary documentation
+This is the third and last weekly check in for the bingo project. Finally completed the classes and combinated them to create BINGO. Added input validatation for each of the user input statements. Happy for how this protect turned out. Included necessary documentation 2/18/2025
