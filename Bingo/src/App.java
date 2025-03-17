@@ -6,6 +6,7 @@
  * A user will be able to choose between manual and automatic mode.
  * Program contains a menu which indicates a users actions for BINGO.
  */
+//testing code
 import java.util.*;
 
 public class App {
