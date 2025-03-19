@@ -7,7 +7,9 @@ import org.junit.Test;
 public class PatternTest {
 
 
-    //create some sample cards
+    int[][] custom_T_pat = {{0,0},{0,1},{0,2},{0,3},{0,4},{1,2},{2,2},{3,2},{4,2}};
+    int[][] custom_square_pat = {{0,0},{0,1},{0,2},{0,3},{0,4},{4,0},
+    {4,1},{4,2},{4,3},{4,4},{1,0},{2,0},{3,0},{1,4},{2,4},{3,4}};
     //TESTING//
     //Column pattern
     @Test
@@ -192,4 +194,62 @@ public void testBadDiagonal() { //tests row on diagonal pattern
     assertFalse("Doesn't Match", p12.diagonalPattern(t12, 0));
 }
 
+@Test
+public void testCustom_T() {
+    Card t13 = new Card();
+    for (int i = 0; i < 5; i++) {
+        t13.markCardPos(0, i);
+    }
+    for (int i = 1; i < 5; i++) {
+        t13.markCardPos(i,2);
+    }
+    
+    Pattern p13 = new Pattern(t13);
+    assertTrue("custom Match", p13.customPattern(t13, custom_T_pat));
+}
+
+@Test
+public void testCustom_T_Fail() {
+    Card t14 = new Card();
+    for (int i = 0; i < 5; i++) {
+        for (int j = 0; j < 5; j++) {
+            t14.markCardPos(i, j);
+        }
+    }
+
+    Pattern p14 = new Pattern(t14);
+    assertTrue("custom Match", p14.customPattern(t14, custom_T_pat));
+
+}
+
+@Test
+public void testCustomIncompleteT() {
+    Card t15 = new Card();
+    for (int i = 0; i < 5; i++) {
+        for (int j = 0; j < 5; j++) {
+            if (i != 2 && j != 2) {
+                t15.markCardPos(i, j);
+            }
+        }
+    }
+
+    Pattern p15 = new Pattern(t15);
+    assertFalse("Custom doesn't Match",p15.customPattern(t15, custom_T_pat));
+
+}
+
+@Test
+public void testCustomCompleteSquare() {
+    
+}
+
+@Test
+public void testCustomIncompleteSquare() {
+
+}
+
+@Test
+public void testCustomIncompleteSquare2() {
+
+}
 }
