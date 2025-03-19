@@ -148,4 +148,89 @@ public class BingoManagerTest {
 
     }
 
+    @Test
+    public void testIncomplete1() {
+        Card c7 = new Card();
+        for (int i = 0; i < 5; i++) {
+            for (int j = 0; j < 5; j++) {
+                if (i != 0 || j != 4) {
+                    c7.markCardPos(i, j);
+                }
+                
+            }
+        }
+
+        Pattern p7 = new Pattern(c7);
+        BingoManager BM7 = new BingoManager();
+
+        BM7.addPattern(BingoManager.patType.ROW);
+        BM7.addPattern(BingoManager.patType.COLUMN);
+        BM7.addPattern(BingoManager.patType.DIAGONAL);
+        BM7.addPattern(BingoManager.patType.CUSTOM);
+
+        BM7.addCustomPattern(custom_T_pat);
+        BM7.addCustomPattern(custom_square_pat);
+
+        ArrayList<BingoManager.patType> myList = BM7.getPatList();
+
+        assertEquals(9,BM7.computeBingo(myList, p7)); //assignment is wrong this should be 9 instead of 10, custom fails
+
+    }
+
+    @Test
+    public void testIncomplete2() {
+        Card c8 = new Card();
+        for (int i = 0; i < 5; i++) {
+            for (int j = 0; j < 5; j++) {
+                if (i != 1 || j != 1) {
+                    c8.markCardPos(i, j);
+                }
+                
+            }
+        }
+
+        Pattern p8 = new Pattern(c8);
+        BingoManager BM8 = new BingoManager();
+
+        BM8.addPattern(BingoManager.patType.ROW);
+        BM8.addPattern(BingoManager.patType.COLUMN);
+        BM8.addPattern(BingoManager.patType.DIAGONAL);
+        BM8.addPattern(BingoManager.patType.CUSTOM);
+
+        BM8.addCustomPattern(custom_T_pat);
+        BM8.addCustomPattern(custom_square_pat);
+
+        ArrayList<BingoManager.patType> myList = BM8.getPatList();
+
+        assertEquals(11,BM8.computeBingo(myList, p8));
+    }
+
+    @Test
+    public void testIncomplete3() {
+        Card c9 = new Card();
+        for (int i = 0; i < 5; i++) {
+            for (int j = 0; j < 5; j++) {
+                if (i != 2 || j != 1) {
+                    c9.markCardPos(i, j);
+                }
+                
+            }
+        }
+
+        Pattern p9 = new Pattern(c9);
+        BingoManager BM9 = new BingoManager();
+
+        BM9.addPattern(BingoManager.patType.ROW);
+        BM9.addPattern(BingoManager.patType.COLUMN);
+        BM9.addPattern(BingoManager.patType.DIAGONAL);
+        BM9.addPattern(BingoManager.patType.CUSTOM);
+
+        BM9.addCustomPattern(custom_T_pat);
+        BM9.addCustomPattern(custom_square_pat);
+
+        ArrayList<BingoManager.patType> myList = BM9.getPatList();
+
+        assertEquals(12,BM9.computeBingo(myList, p9));
+    }
+
 }
