@@ -240,16 +240,53 @@ public void testCustomIncompleteT() {
 
 @Test
 public void testCustomCompleteSquare() {
-    
+    Card t16 = new Card();
+    //top and bottom rows
+    for (int i = 0; i < 5; i++) {
+        t16.markCardPos(0, i);
+        t16.markCardPos(4,i);
+    }
+    //first and last column
+    for (int i = 1; i < 4; i++) {
+        t16.markCardPos(i, 0);
+        t16.markCardPos(i, 4);
+    }
+
+    Pattern p16 = new Pattern(t16);
+    assertTrue("custom Match", p16.customPattern(t16, custom_square_pat));
+
 }
 
 @Test
 public void testCustomIncompleteSquare() {
+    Card t17 = new Card();
+    for (int i = 0; i < 5; i++) {
+        for (int j = 0; j < 5; j++) {
+            if (i != 4 && j != 4) {
+                t17.markCardPos(i, j);
+            }
+        }
+    }
+
+    Pattern p17 = new Pattern(t17);
+    assertFalse("custom doesn't Match", p17.customPattern(t17, custom_square_pat));
 
 }
 
 @Test
 public void testCustomIncompleteSquare2() {
+    Card t18 = new Card();
+    for (int i = 0; i < 5; i++) {
+        for (int j = 0; j < 5; j++) {
+            if (i != 0 && j != 0) {
+                t18.markCardPos(i, j);
+            }
+        }
+    }
+
+    Pattern p18 = new Pattern(t18);
+    assertFalse("custom doesn't Match", p18.customPattern(t18, custom_square_pat));
+    
 
 }
 }
