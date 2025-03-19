@@ -13,7 +13,10 @@ import java.util.*;
 public class BingoManagerTest {
     
     //Testing Bingo Manager
-    //create cards
+    //custom patterns
+    int[][] custom_T_pat = {{0,0},{0,1},{0,2},{0,3},{0,4},{1,2},{2,2},{3,2},{4,2}};
+    int[][] custom_square_pat = {{0,0},{0,1},{0,2},{0,3},{0,4},{4,0},
+    {4,1},{4,2},{4,3},{4,4},{1,0},{2,0},{3,0},{1,4},{2,4},{3,4}};
 
     @Test
     public void testFirstRow() {
@@ -98,6 +101,51 @@ public class BingoManagerTest {
         assertEquals(4,BM4.computeBingo(myList, p4));
     }
 
+    @Test
+    public void testFullCard() {
+        Card c5 = new Card();
+        for (int i = 0; i < 5; i++) {
+            for (int j = 0; j < 5; j++) {
+                c5.markCardPos(i, j);
+            }
+        }
 
+        Pattern p5 = new Pattern(c5);
+        BingoManager BM5 = new BingoManager();
+
+        BM5.addPattern(BingoManager.patType.ROW);
+        BM5.addPattern(BingoManager.patType.COLUMN);
+        BM5.addPattern(BingoManager.patType.DIAGONAL);
+
+        ArrayList<BingoManager.patType> myList = BM5.getPatList();
+
+        assertEquals(12,BM5.computeBingo(myList, p5));
+    }
+
+    @Test
+    public void testFullwCustom() {
+        Card c6 = new Card();
+        for (int i = 0; i < 5; i++) {
+            for (int j = 0; j < 5; j++) {
+                c6.markCardPos(i, j);
+            }
+        }
+
+        Pattern p6 = new Pattern(c6);
+        BingoManager BM6 = new BingoManager();
+
+        BM6.addPattern(BingoManager.patType.ROW);
+        BM6.addPattern(BingoManager.patType.COLUMN);
+        BM6.addPattern(BingoManager.patType.DIAGONAL);
+        BM6.addPattern(BingoManager.patType.CUSTOM);
+
+        BM6.addCustomPattern(custom_T_pat);
+        BM6.addCustomPattern(custom_square_pat);
+
+        ArrayList<BingoManager.patType> myList = BM6.getPatList();
+
+        assertEquals(14,BM6.computeBingo(myList, p6));
+
+    }
 
 }
