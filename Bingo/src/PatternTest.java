@@ -8,6 +8,8 @@ public class PatternTest {
 
 
     //create some sample cards
+    //TESTING//
+    //Column pattern
     @Test
     public void testFirstRow() {
         Card t1 = new Card();
@@ -71,7 +73,7 @@ public class PatternTest {
     }
 
     @Test
-    //column pattern check
+    //row pattern check
     public void testFirstColumn() {
         Card t5 = new Card();
         //x down, y accross
@@ -128,7 +130,66 @@ public class PatternTest {
 
         assertFalse("Doesn't match",p8.columnPattern(t8, 0));
 
-
     }
-    
+    @Test
+    public void testSecondColumnIncomplete() {
+        Card t9 = new Card();
+    //x down, y accross
+    t9.markCardPos(0, 1);
+    //t9.markCardPos(1, 1); row 1 is unmarked
+    t9.markCardPos(2, 1);
+    t9.markCardPos(3, 1);
+    t9.markCardPos(4, 1);
+
+    Pattern p9 = new Pattern(t9);
+
+    assertFalse("Match",p9.columnPattern(t9, 1));
+    } 
+
+//diagonal tests: assume 0 is negative slope and 1 is positive slope
+
+@Test
+public void testPositiveDiagonal() {
+    Card t10 = new Card();
+
+    t10.markCardPos(0, 4);
+    t10.markCardPos(1, 3);
+    t10.markCardPos(2, 2);
+    t10.markCardPos(3, 1);
+    t10.markCardPos(4, 0);
+
+    Pattern p10 = new Pattern(t10);
+    assertTrue("Match",p10.diagonalPattern(t10, 1));
+
+}
+
+@Test
+public void testNegativeDiagonal() {
+    Card t11 = new Card();
+
+    t11.markCardPos(0, 0);
+    t11.markCardPos(1, 1);
+    t11.markCardPos(2, 2);
+    t11.markCardPos(3, 3);
+    t11.markCardPos(4, 4);
+
+    Pattern p11 = new Pattern(t11);
+    assertTrue("Match",p11.diagonalPattern(t11, 0));
+
+}
+
+@Test
+public void testBadDiagonal() { //tests row on diagonal pattern
+    Card t12 = new Card();
+
+    t12.markCardPos(1, 0);
+    t12.markCardPos(1, 1);
+    t12.markCardPos(1, 2);
+    t12.markCardPos(1, 3);
+    t12.markCardPos(1, 4);
+
+    Pattern p12 = new Pattern(t12);
+    assertFalse("Doesn't Match", p12.diagonalPattern(t12, 0));
+}
+
 }
