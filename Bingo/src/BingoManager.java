@@ -1,78 +1,35 @@
 //class that computes the number of bingos on the card
 //method: compute bingos
 //check each of the verified patterns
+//TODO fix to work for with pattern inheritance
 import java.util.ArrayList;
 
-
+//Note: class doesn't use any enums or a seperate list of custom patterns. Just one array list that contains patterns
 public class BingoManager {
-    private ArrayList<PatternListType> pat;
-    private ArrayList<int[][]> customPatList;
-    enum PatternListType {
-        COLUMN,
-        ROW,
-        DIAGONAL,
-        CUSTOM
-    }
+
+    private ArrayList<Pattern> patternList;
     
 
     public BingoManager() {
-        this.pat = new ArrayList<>();
-        this.customPatList = new ArrayList<>();
+        this.patternList = new ArrayList<>();
     }
 
-    public void addPattern(PatternListType type) { //adds key word for pattern to check bingo (row, col, dia, custom)
-        pat.add(type);
+    public ArrayList<Pattern> getPatList() {
+        return this.patternList;
+    }
+
+    public void addPattern(Pattern patType) { 
+        patternList.add(patType);
         
     }
-
-    public void addCustomPattern(int[][] addPat) { //custom specific patterns
-        customPatList.add(addPat);
-
-    }
-
-    //
-    public int computeBingo(PatternListType type, Pattern pat) {
+    public int computeBingo() {
         int NoOfBingos = 0; 
-
-        //use Enum to test bingo card by the exact number of methods
-        Card c = pat.getCard();
-        switch (type) {
-            case ROW:
-                for (int i = 0; i < 5; i++) {
-                    if(pat.rowPattern(c, i)) {
-                        NoOfBingos++;
-                    }
-
-                }
-
-            case COLUMN:
-            for (int i = 0; i < 5; i++) {
-                if(pat.columnPattern(c, i)) {
-                    NoOfBingos++;
-                }
-
+        for (int i = 0; i < patternList.size(); i++) {
+            if(patternList.get(i).checkPatternType()) {
+                ++NoOfBingos;
             }
-
-            case DIAGONAL:
-                if(pat.diagonalPattern(c, 0)) {
-                    NoOfBingos++;
-                }
-                if(pat.diagonalPattern(c, 1)) {
-                    NoOfBingos++;
-                }
-
-                //TODO: create function to test card input on types of custom pattern
-            case CUSTOM:
-                for(int i = 0; i < customPatList.size(); i++) {
-                    if (pat.customPattern(c, customPatList.get(i))) {
-                        NoOfBingos++;
-                    }
-                }
-
-            default:
-                return NoOfBingos;
-
         }
+        return NoOfBingos;
     }
     
 }
