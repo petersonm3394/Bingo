@@ -1,5 +1,4 @@
 
-
 import org.junit.Test;
 
 import BingoManager.patType;
@@ -18,6 +17,8 @@ public class BingoManagerTest {
     int[][] custom_square_pat = {{0,0},{0,1},{0,2},{0,3},{0,4},{4,0},
     {4,1},{4,2},{4,3},{4,4},{1,0},{2,0},{3,0},{1,4},{2,4},{3,4}};
 
+    //setups
+
     @Test
     public void testFirstRow() {
         Card c1 = new Card();
@@ -28,20 +29,20 @@ public class BingoManagerTest {
         c1.markCardPos(0, 3);
         c1.markCardPos(0, 4);
 
-        Pattern p1 = new Pattern(c1);
+        //Pattern p1 = new Pattern(c1);
+
+        RowPattern row1 = new RowPattern(c1, 0);
         BingoManager BM1 = new BingoManager();
 
-        BM1.addPattern(BingoManager.patType.ROW);
-
-        ArrayList<BingoManager.patType> myList = BM1.getPatList();
-        
-        assertEquals(1,BM1.computeBingo(myList, p1));
+        BM1.addPattern(row1);
+        assertEquals(1,BM1.computeBingo());
 
     }
 
     @Test
     public void testOddRows() {
         Card c2 = new Card();
+        BingoManager BM2 = new BingoManager();
 
         for (int i = 0; i < 5; i++) {
             c2.markCardPos(0, i);
@@ -49,19 +50,19 @@ public class BingoManagerTest {
             c2.markCardPos(4, i);
         }
 
-        Pattern p2 = new Pattern(c2);
-        BingoManager BM2 = new BingoManager();
-        BM2.addPattern(BingoManager.patType.ROW);
-
-        ArrayList<BingoManager.patType> myList = BM2.getPatList();
         
-        assertEquals(3,BM2.computeBingo(myList, p2));
+        for (int i = 0; i < 6; i+=2) {
+            RowPattern row = new RowPattern(c2, i);
+            BM2.addPattern(row);
+        }
+        assertEquals(3,BM2.computeBingo());
 
     }
 
     @Test
     public void testOddRowsColumn() {
         Card c3 = new Card();
+        BingoManager BM3 = new BingoManager();
 
         for (int i = 0; i < 5; i++) { //marks odd rows and last column
             c3.markCardPos(0, i);
@@ -70,13 +71,12 @@ public class BingoManagerTest {
             c3.markCardPos(i, 4);
         }
 
-        Pattern p3 = new Pattern(c3);
-        BingoManager BM3 = new BingoManager();
-        BM3.addPattern(BingoManager.patType.ROW);
-
-        ArrayList<BingoManager.patType> myList = BM3.getPatList();
-        
-        assertEquals(3,BM3.computeBingo(myList, p3)); //output should be 3 since the column isn't counted
+        for (int i = 0; i < 6; i+=2) {
+            RowPattern row = new RowPattern(c3, i);
+            BM3.addPattern(row);
+        }
+    
+        assertEquals(3,BM3.computeBingo()); //output should be 3 since the column isn't counted
 
     }
 
