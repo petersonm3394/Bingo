@@ -22,9 +22,11 @@ public class PatternTest {
         t1.markCardPos(0, 3);
         t1.markCardPos(0, 4);
 
-        Pattern p1 = new Pattern(t1);
+      
 
-        assertTrue("Match",p1.rowPattern(t1, 0));
+       RowPattern row1 = new RowPattern(t1, 0);
+
+       assertTrue("Match",row1.checkPatternType());
     }
 
     @Test
@@ -37,9 +39,11 @@ public class PatternTest {
         t2.markCardPos(2, 3);
         t2.markCardPos(2, 4);
 
-        Pattern p2 = new Pattern(t2);
+        RowPattern row2 = new RowPattern(t2, 2);
 
-        assertTrue("Match",p2.rowPattern(t2, 2));
+
+
+        assertTrue("Match",row2.checkPatternType());
 
     }
 
@@ -53,9 +57,9 @@ public class PatternTest {
         t3.markCardPos(4, 3);
         t3.markCardPos(4, 4);
 
-        Pattern p3 = new Pattern(t3);
+        RowPattern row3 = new RowPattern(t3, 4);
 
-        assertTrue("Match",p3.rowPattern(t3, 4));
+        assertTrue("Match",row3.checkPatternType());
 
     }
 
@@ -69,9 +73,9 @@ public class PatternTest {
         t4.markCardPos(3, 0);
         t4.markCardPos(4, 0);
 
-        Pattern p4 = new Pattern(t4);
+        RowPattern row4 = new RowPattern(t4,0);
 
-        assertFalse("Doesn't Match",p4.rowPattern(t4, 0));
+        assertFalse("Doesn't Match",row4.checkPatternType());
     }
 
     @Test
@@ -85,23 +89,23 @@ public class PatternTest {
         t5.markCardPos(3, 0);
         t5.markCardPos(4, 0);
 
-        Pattern p5 = new Pattern(t5);
+        ColumnPattern col1 = new ColumnPattern(t5, 0);
 
-        assertTrue("Matches",p5.columnPattern(t5, 0));
+        assertTrue("Matches",col1.checkPatternType());
     }
     @Test
     public void testFourthColumn() {
         Card t6 = new Card();
         //x down, y accross
-        t6.markCardPos(0, 2);
-        t6.markCardPos(1, 2);
-        t6.markCardPos(2, 2);
-        t6.markCardPos(3, 2);
-        t6.markCardPos(4, 2);
+        t6.markCardPos(0, 3);
+        t6.markCardPos(1, 3);
+        t6.markCardPos(2, 3);
+        t6.markCardPos(3, 3);
+        t6.markCardPos(4, 3);
 
-        Pattern p6 = new Pattern(t6);
+        ColumnPattern col2 = new ColumnPattern(t6, 3);
 
-        assertTrue("Matches",p6.columnPattern(t6, 2));
+        assertTrue("Matches", col2.checkPatternType());
     }
     @Test
     public void testLastColumn() {
@@ -113,9 +117,8 @@ public class PatternTest {
         t7.markCardPos(3, 4);
         t7.markCardPos(4, 4);
 
-        Pattern p7 = new Pattern(t7);
-
-        assertTrue("Matches",p7.columnPattern(t7, 4));
+        ColumnPattern col3 = new ColumnPattern(t7, 4);
+        assertTrue("Matches",col3.checkPatternType());
     }
 
     @Test
@@ -128,9 +131,9 @@ public class PatternTest {
         t8.markCardPos(0, 3);
         t8.markCardPos(0, 4);
 
-        Pattern p8 = new Pattern(t8);
+        ColumnPattern col4 = new ColumnPattern(t8, 0);
 
-        assertFalse("Doesn't match",p8.columnPattern(t8, 0));
+        assertFalse("Doesn't match",col4.checkPatternType());
 
     }
     @Test
@@ -143,9 +146,9 @@ public class PatternTest {
     t9.markCardPos(3, 1);
     t9.markCardPos(4, 1);
 
-    Pattern p9 = new Pattern(t9);
+    ColumnPattern col5 = new ColumnPattern(t9, 1);
 
-    assertFalse("Match",p9.columnPattern(t9, 1));
+    assertFalse("Match",col5.checkPatternType());
     } 
 
 //diagonal tests: assume 0 is negative slope and 1 is positive slope
@@ -227,7 +230,7 @@ public void testCustomIncompleteT() {
     Card t15 = new Card();
     for (int i = 0; i < 5; i++) {
         for (int j = 0; j < 5; j++) {
-            if (i != 2 && j != 2) {
+            if (i != 2 || j != 2) {
                 t15.markCardPos(i, j);
             }
         }
@@ -262,7 +265,7 @@ public void testCustomIncompleteSquare() {
     Card t17 = new Card();
     for (int i = 0; i < 5; i++) {
         for (int j = 0; j < 5; j++) {
-            if (i != 4 && j != 4) {
+            if (i != 4 || j != 4) {
                 t17.markCardPos(i, j);
             }
         }
@@ -278,7 +281,7 @@ public void testCustomIncompleteSquare2() {
     Card t18 = new Card();
     for (int i = 0; i < 5; i++) {
         for (int j = 0; j < 5; j++) {
-            if (i != 0 && j != 0) {
+            if (i != 0 || j != 0) {
                 t18.markCardPos(i, j);
             }
         }
