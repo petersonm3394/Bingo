@@ -163,8 +163,8 @@ public void testPositiveDiagonal() {
     t10.markCardPos(3, 1);
     t10.markCardPos(4, 0);
 
-    Pattern p10 = new Pattern(t10);
-    assertTrue("Match",p10.diagonalPattern(t10, 1));
+    DiagonalPattern dia1 = new DiagonalPattern(t10, 1);
+    assertTrue("Match",dia1.checkPatternType());
 
 }
 
@@ -178,8 +178,8 @@ public void testNegativeDiagonal() {
     t11.markCardPos(3, 3);
     t11.markCardPos(4, 4);
 
-    Pattern p11 = new Pattern(t11);
-    assertTrue("Match",p11.diagonalPattern(t11, 0));
+    DiagonalPattern dia2 = new DiagonalPattern(t11, 0);
+    assertTrue("Match",dia2.checkPatternType());
 
 }
 
@@ -193,12 +193,12 @@ public void testBadDiagonal() { //tests row on diagonal pattern
     t12.markCardPos(1, 3);
     t12.markCardPos(1, 4);
 
-    Pattern p12 = new Pattern(t12);
-    assertFalse("Doesn't Match", p12.diagonalPattern(t12, 0));
+    DiagonalPattern dia3 = new DiagonalPattern(t12,0);
+    assertFalse("Doesn't Match",dia3.checkPatternType());
 }
 
 @Test
-public void testCustom_T() {
+public void testCustom_T1() {
     Card t13 = new Card();
     for (int i = 0; i < 5; i++) {
         t13.markCardPos(0, i);
@@ -207,12 +207,12 @@ public void testCustom_T() {
         t13.markCardPos(i,2);
     }
     
-    Pattern p13 = new Pattern(t13);
-    assertTrue("custom Match", p13.customPattern(t13, custom_T_pat));
+    CustomPattern cust1 = new CustomPattern(t13, custom_T_pat);
+    assertTrue("custom Match", cust1.checkPatternType());
 }
 
 @Test
-public void testCustom_T_Fail() {
+public void testCustom_T2() {
     Card t14 = new Card();
     for (int i = 0; i < 5; i++) {
         for (int j = 0; j < 5; j++) {
@@ -220,13 +220,13 @@ public void testCustom_T_Fail() {
         }
     }
 
-    Pattern p14 = new Pattern(t14);
-    assertTrue("custom Match", p14.customPattern(t14, custom_T_pat));
+    CustomPattern cust2 = new CustomPattern(t14, custom_T_pat);
+    assertTrue("custom Match", cust2.checkPatternType());
 
 }
 
 @Test
-public void testCustomIncompleteT() {
+public void testCustom_T3() {
     Card t15 = new Card();
     for (int i = 0; i < 5; i++) {
         for (int j = 0; j < 5; j++) {
@@ -236,13 +236,13 @@ public void testCustomIncompleteT() {
         }
     }
 
-    Pattern p15 = new Pattern(t15);
-    assertFalse("Custom doesn't Match",p15.customPattern(t15, custom_T_pat));
+    CustomPattern cust3 = new CustomPattern(t15, custom_T_pat);
+    assertFalse("Custom doesn't Match",cust3.checkPatternType());
 
 }
 
 @Test
-public void testCustomCompleteSquare() {
+public void testCustom_Square1() {
     Card t16 = new Card();
     //top and bottom rows
     for (int i = 0; i < 5; i++) {
@@ -255,13 +255,13 @@ public void testCustomCompleteSquare() {
         t16.markCardPos(i, 4);
     }
 
-    Pattern p16 = new Pattern(t16);
-    assertTrue("custom Match", p16.customPattern(t16, custom_square_pat));
+    CustomPattern cust4 = new CustomPattern(t16, custom_square_pat);
+    assertTrue("custom Match", cust4.checkPatternType());
 
 }
 
 @Test
-public void testCustomIncompleteSquare() {
+public void testCustom_Square2() {
     Card t17 = new Card();
     for (int i = 0; i < 5; i++) {
         for (int j = 0; j < 5; j++) {
@@ -271,13 +271,13 @@ public void testCustomIncompleteSquare() {
         }
     }
 
-    Pattern p17 = new Pattern(t17);
-    assertFalse("custom doesn't Match", p17.customPattern(t17, custom_square_pat));
+    CustomPattern cust5 = new CustomPattern(t17, custom_square_pat);
+    assertFalse("custom doesn't Match", cust5.checkPatternType());
 
 }
 
 @Test
-public void testCustomIncompleteSquare2() {
+public void testCustom_Square3() {
     Card t18 = new Card();
     for (int i = 0; i < 5; i++) {
         for (int j = 0; j < 5; j++) {
@@ -287,8 +287,8 @@ public void testCustomIncompleteSquare2() {
         }
     }
 
-    Pattern p18 = new Pattern(t18);
-    assertFalse("custom doesn't Match", p18.customPattern(t18, custom_square_pat));
+    CustomPattern cust6 = new CustomPattern(t18, custom_square_pat);
+    assertFalse("custom doesn't Match", cust6.checkPatternType());
     
 
 }
