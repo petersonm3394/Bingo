@@ -223,7 +223,7 @@ public class BingoManagerTest {
         BM8.addPattern(cust1);
         BM8.addPattern(cust2);
 
-        assertEquals(11,BM8.computeBingo(myList, p8));
+        assertEquals(11,BM8.computeBingo());
     }
 
     @Test
